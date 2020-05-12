@@ -74,12 +74,12 @@ add_definitions(
 # if we cannot get it from git, directly try .tag (packages)
 # this will work if the tar balls have been properly created
 # via git-archive.
-if ("${GIT_SHA1}" STREQUAL "GITDIR-NOTFOUND")
+if("${GIT_SHA1}" STREQUAL "GITDIR-NOTFOUND")
     file(READ ${CMAKE_SOURCE_DIR}/.tag sha1_candidate)
     string(REPLACE "\n" "" sha1_candidate ${sha1_candidate})
-    if (NOT ${sha1_candidate} STREQUAL "$Format:%H$")
-        message("${sha1_candidate}")
-        set (GIT_SHA1 "${sha1_candidate}")
+    if(NOT ${sha1_candidate} STREQUAL "$Format:%H$")
+        message(STATUS "${sha1_candidate}")
+        set(GIT_SHA1 "${sha1_candidate}")
     endif()
 endif()
 message(STATUS "GIT_SHA1 ${GIT_SHA1}")
@@ -114,8 +114,8 @@ endif()
 # external authentication mechanisms
 option(TOKEN_AUTH_ONLY "TOKEN_AUTH_ONLY" OFF)
 if(TOKEN_AUTH_ONLY)
-   message("Compiling with token authentication")
-   add_definitions(-DTOKEN_AUTH_ONLY=1)
+    message(STATUS "Compiling with token authentication")
+    add_definitions(-DTOKEN_AUTH_ONLY=1)
 endif()
 
 option(NO_MSG_HANDLER "Don't redirect QDebug outputs to the log window/file" OFF)
@@ -126,10 +126,10 @@ endif()
 # this option builds the updater
 option(BUILD_UPDATER "BUILD_UPDATER" OFF)
 if(BUILD_UPDATER)
-   message("Compiling with updater")
-   add_definitions(-DBUILD_UPDATER=1)
+    message(STATUS "Compiling with updater")
+    add_definitions(-DBUILD_UPDATER=1)
 else()
-   message("Compiling without updater")
+    message(STATUS "Compiling without updater")
 endif()
 
 # this option builds the shell integration
@@ -172,8 +172,8 @@ endif()
 # So the client can be built without QtWebKit
 option(NO_SHIBBOLETH "Build without Shibboleth support. Allow to build the client without QtWebKit" OFF)
 if(NO_SHIBBOLETH)
-   message("Compiling without shibboleth")
-   add_definitions(-DNO_SHIBBOLETH=1)
+    message(STATUS "Compiling without shibboleth")
+    add_definitions(-DNO_SHIBBOLETH=1)
 endif()
 
 if(APPLE)
