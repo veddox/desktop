@@ -86,7 +86,7 @@ private:
 
     QScreen *currentScreen() const;
     QRect currentScreenRect() const;
-    QPoint computeWindowReferencePoint(int width, int height) const;
+    QPoint computeWindowReferencePoint() const;
 
     bool _isOpen = false;
     bool _syncIsPaused = false;
