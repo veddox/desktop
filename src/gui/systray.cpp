@@ -154,9 +154,11 @@ QScreen *Systray::currentScreen() const
     return (it != screens.cend()) ? *it : nullptr;
 }
 
-QVariant Systray::currentScreenVar() const
+int Systray::currentScreenIndex() const
 {
-    return QVariant::fromValue(currentScreen());
+    const auto screens = QGuiApplication::screens();
+    const auto screenIndex = screens.indexOf(currentScreen());
+    return screenIndex > 0 ? screenIndex : 0;
 }
 
 Systray::TaskBarPosition Systray::taskbarOrientation() const
